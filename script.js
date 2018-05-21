@@ -3,8 +3,6 @@ let randomWord = (testArray[(Math.floor(Math.random() * testArray.length))])
 let correctLettersArray = randomWord.split("")
 let lives = 6
 
-console.log(correctLettersArray)
-
 // - randomize array code or whatever. work on this later. dont hate yourself please
 
 // createRandomWord = function () {
