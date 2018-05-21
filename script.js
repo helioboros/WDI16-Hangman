@@ -1,8 +1,13 @@
 const Hangman = {
-
-    // big ole hangman object array. just testing for now. picks one.
+    //In the hangman object, have the functions for:
+    // creating a random word
     testArray: ["one", "two", "three", "four", "five"],
     randomWord: (testArray[(Math.floor(Math.random() * testArray.length))]),
+    //function to split random word into an array of letters
+    //turn that array into "correct" letters
+    createCorrect: function() {
+        let correctLettersArray = randomWord.split("")
+    }
 
     // - randomize array code or whatever. work on this later. dont hate yourself please
 
@@ -13,14 +18,22 @@ const Hangman = {
     //     let chosenArray = this.wordArrays.testArray
     //     let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
     // }
+}
+
 
     // some kind of 'prepare game board' function for when you press a button would be cool
     // for now let it start up when the page loads
     //
+
+
+    // user interface object would be nice.
+    // visual changes for guessed letters, number of lives
+
     // Display for the chosen word
     //      fill it with " _ " for # of letters in the word
     //      replace corresponding _ to match it with the corresponding letter. maybe like
     //      array and match the number values?
+const viewFront = {
     createWordTemplate: function () {
         for (let ii = 0; ii < (randomWord.length * 2 - 1); ii++) {
             if (ii % 2 == 0) {
@@ -39,22 +52,33 @@ const Hangman = {
     },
     lifeUpdate: function () {
         $(h3).text(lives)
+    },
+
+
+    reset: function () {
+        this.lives = 6
+        Hangman.randomWord()
+        //update word display
+        //return missing letters
+    },
+
+    letters: function () {
+        Hangman.randomWord.split()
     }
-    // function for resetting parameters
-    //      - Lives: 6
-    //      - Word: random from such and such array
-    //      - Word display: updated
-    //      - Letter display: filled out
 
     // Display of letters
     //      on click, record that button's letter. let that button fade out
-    //      run it against the current word
+    //      run it against:
+    // Hangman.createCorrect.correctLettersArray[]
     //          if is in:
     //          if is not: -1 life
-    // 
-    // oh fuck if i know
-    // baseSet var
-    // lives.baseSet = 6
-    // letters.baseSet = ?? make disappeared letter buttons appear again?? fuck idk
-
 }
+const interactable = {
+    //put the things that happen when users click buttons here
+}
+
+$(() => {
+    //BUTTONS.
+
+    $("#reset").click(viewFront.reset)
+})
