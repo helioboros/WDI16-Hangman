@@ -1,14 +1,8 @@
-const Hangman = {
-    //In the hangman object, have the functions for:
-    // creating a random word
-    testArray: ["one", "two", "three", "four", "five"],
-    randomWord: (testArray[(Math.floor(Math.random() * testArray.length))]),
-    //function to split random word into an array of letters
-    //turn that array into "correct" letters
-    createCorrect: function() {
-        let correctLettersArray = randomWord.split("")
-    }
-
+const createRandomWord = function () {
+    let testArray = ["one", "two", "three", "four", "five"]
+    let randomWord = (testArray[(Math.floor(Math.random() * testArray.length))])
+    let correctLettersArray = randomWord.split("")
+},
     // - randomize array code or whatever. work on this later. dont hate yourself please
 
     // createRandomWord = function () {
@@ -18,22 +12,20 @@ const Hangman = {
     //     let chosenArray = this.wordArrays.testArray
     //     let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
     // }
-}
 
 
-    // some kind of 'prepare game board' function for when you press a button would be cool
-    // for now let it start up when the page loads
-    //
+// some kind of 'prepare game' function for when you press a button would be cool
+// for now let it start up when the page loads
 
+// user interface object would be nice.
+// visual changes for guessed letters, number of lives
 
-    // user interface object would be nice.
-    // visual changes for guessed letters, number of lives
+// Display for the chosen word
+//      fill it with " _ " for # of letters in the word
+//      replace corresponding _ to match it with the corresponding letter. maybe like
+//      array and match the number values?
 
-    // Display for the chosen word
-    //      fill it with " _ " for # of letters in the word
-    //      replace corresponding _ to match it with the corresponding letter. maybe like
-    //      array and match the number values?
-const viewFront = {
+const uInterface = {
     createWordTemplate: function () {
         for (let ii = 0; ii < (randomWord.length * 2 - 1); ii++) {
             if (ii % 2 == 0) {
@@ -57,19 +49,19 @@ const viewFront = {
 
     reset: function () {
         this.lives = 6
-        Hangman.randomWord()
+        createRandomWord.randomWord()
         //update word display
         //return missing letters
     },
 
     letters: function () {
-        Hangman.randomWord.split()
+
     }
 
     // Display of letters
     //      on click, record that button's letter. let that button fade out
     //      run it against:
-    // Hangman.createCorrect.correctLettersArray[]
+    // createRandomWord.correctLettersArray[]
     //          if is in:
     //          if is not: -1 life
 }
@@ -79,6 +71,9 @@ const interactable = {
 
 $(() => {
     //BUTTONS.
-
-    $("#reset").click(viewFront.reset)
+    $("")
+    $(".button").click(function () {
+        this.fadeOut()
+    })
+    $("#reset").click(uInterface.reset)
 })
