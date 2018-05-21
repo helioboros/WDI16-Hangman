@@ -2,11 +2,8 @@ const Hangman = {
 
     // big ole hangman object array. just testing for now. picks one out of the letters.
     // later a function to randomize the array would be neat?
-    wordArrays: {
-        testArray: ["one", "two", "three", "four", "five"],
-    },
-    chosenArray: wordArrays.testArray,
-    randomWord: chosenArray[(Math.floor(Math.random() * chosenArray.length))],
+    testArray: ["one", "two", "three", "four", "five"],
+    randomWord: (testArray[(Math.floor(Math.random() * testArray.length))]),
     //  random word display: something about making an array at randomWord.length?
     guessedLetters: [],
 
@@ -27,7 +24,7 @@ const Hangman = {
     //
     // object for stuff having to do with lives?
     //      Display: some kind of array of images or ascii objects corresponding to life #
-    lifeRel: {
+    lifeRel = {
         lives: 6
         lifeHit: function () {
             this.lives--
