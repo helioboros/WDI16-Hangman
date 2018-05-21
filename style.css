@@ -2,6 +2,7 @@
     display: flex;
     align-items: space-around;
     justify-content: space-around;
+    flex-wrap: wrap;
     max-width: 600px;
     max-height: 600px;
     margin: 0 auto;
@@ -9,6 +10,17 @@
     padding: 10px;
     border: #434547;
     border-width: 4px;
+    border-radius: 50px;
+}
+.button {
+    background: rgb(42, 41, 43);
+    color: #FFFFFF;
+    max-width: 30px;
+    max-height: 30px;
+    padding: 1vw;
+    margin: 1vw;
+    border-width: .5vw;
+    border-radius: 10px;
 }
 
 /* Most of this is on the backburner for being pretty stuff.
