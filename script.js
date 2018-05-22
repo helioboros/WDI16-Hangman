@@ -1,14 +1,30 @@
-let testArray = ["one", "two", "three", "four", "five"]
+let testArray = ["ee", "eee", "eeee", "eeeee", "eeeeee"]
 let randomWord = (testArray[(Math.floor(Math.random() * testArray.length))])
 let correctLettersArray = randomWord.split("")
 let lives = 6
-let correct
+let correct = false
 // variable to verify if a letter is anywhere in the word later
 // if doesn't come up, subtract a life
 let guess
 // variable in which to store the guessed letter
+
 lifeUpdate()
 createWordTemplate()
+
+function lifeUpdate() {
+    $("h2").text(lives + " lives remaining")
+}
+
+function createWordTemplate() {
+    $("h3").empty()
+    for (let ii = 0; ii < (randomWord.length * 2 - 1); ii++) {
+        if (ii % 2 == 0) {
+            $("h3").append("_")
+        } else {
+            $("h3").append(" ")
+        }
+    }
+}
 
 // - randomize array code or whatever. work on this later. dont hate yourself please
 
@@ -31,36 +47,21 @@ createWordTemplate()
 //      replace corresponding _ to match it with the corresponding letter. maybe like
 //      array and match the number values?
 
-function createWordTemplate() {
-    $("h3").empty()
-    for (let ii = 0; ii < (randomWord.length * 2 - 1); ii++) {
-        if (ii % 2 == 0) {
-            $("h3").append("_")
-        } else {
-            $("h3").append(" ")
-        }
-    }
-}
-
-
 function letterVerify() {
-    for (int ii = 0; ii < randomWord.length(); ii++) {
+    for (let ii = 0; ii < randomWord.length; ii++) {
         if (randomWord.charAt(ii) == guess) {
-            $("h3").charAt(ii * 2, guess)
+            $("h3").charAt(ii * 2).replace(guess)
             correct = true;
         }
     }
-    if (!correct) {
+    if (correct = false) {
         lives--
+        lifeUpdate()
     }
 }
 
-function lifeUpdate() {
-    $("h2").text(lives + " lives remaining")
-}
-
-
 function reset() {
+    guess = ""
     lives = 6
     lifeUpdate()
     randomWord = (testArray[(Math.floor(Math.random() * testArray.length))])
