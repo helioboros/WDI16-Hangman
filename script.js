@@ -3,6 +3,13 @@ let chosenArray = testArray
 let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
 let lives = 6
 let completionProgress = randomWord.length
+let answerArray = []
+let guessed
+
+function guess(letter){
+    guessed = letter
+    console.log(guessed)
+}
 
 lifeUpdate()
 createWordTemplate()
@@ -14,14 +21,31 @@ function lifeUpdate() {
 
 // To update the display.
 function createWordTemplate() {
-    let answerArray = []
-    for (let i=0; i < (randomWord.length); i++) {
+    for (let i = 0; i < (randomWord.length); i++) {
         answerArray[i] = "_"
     }
     $("h3").text(answerArray.join(" "))
 }
 
+// have some kind of function to make this only playable when completion prog
+// is more than 0?
+// a function that it calls when progress reaches 0..
 
+function letterVerify() {
+    // let correct = false
+    randomWord.split("")
+    for (let i = 0; i < randomWord.length; i++) {
+        if (randomWord[i] === guessed) {
+            answerArray[i] = guessed
+            $("h3").text(answerArray.join(" "))
+            completionProgress--
+            // correct = true
+        }
+    }
+    // if (correct == false) {
+    //     lives--
+    // }
+}
 
 // reset function
 function reset() {
@@ -30,6 +54,7 @@ function reset() {
     lifeUpdate()
     $("h3").empty()
     randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
+    completionProgress = randomWord.length
     createWordTemplate()
     $(".button1").show()
 }
@@ -43,6 +68,7 @@ const interactable = {
 
 $(() => {
     //BUTTONS.
+    $(".button1").click(guess)
     $(".button1").click(function () {
         $(this).fadeOut("slow");
     })
