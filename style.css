@@ -12,7 +12,7 @@
     border-width: 4px;
     border-radius: 50px;
 }
-.button {
+.button, .button1 {
     background: rgb(42, 41, 43);
     color: #FFFFFF;
     padding: 1vw;
