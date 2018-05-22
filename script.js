@@ -2,6 +2,7 @@ const testArray = ["ae", "aei", "aeio", "aeiou", "aeiouy"]
 let chosenArray = testArray
 let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
 let lives = 6
+let completionProgress = randomWord.length
 
 lifeUpdate()
 createWordTemplate()
@@ -11,15 +12,18 @@ function lifeUpdate() {
     $("h2").text(lives + " lives remaining")
 }
 
+// To update the display.
 function createWordTemplate() {
     let answerArray = []
     for (let i=0; i < (randomWord.length); i++) {
         answerArray[i] = "_"
     }
-    $("h3").append(answerArray)
+    $("h3").text(answerArray.join(" "))
 }
 
 
+
+// reset function
 function reset() {
     guess = ""
     lives = 6
