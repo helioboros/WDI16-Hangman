@@ -2,6 +2,11 @@ let testArray = ["one", "two", "three", "four", "five"]
 let randomWord = (testArray[(Math.floor(Math.random() * testArray.length))])
 let correctLettersArray = randomWord.split("")
 let lives = 6
+let correct
+// variable to verify if a letter is anywhere in the word later
+// if doesn't come up, subtract a life
+let guess
+// variable in which to store the guessed letter
 lifeUpdate()
 createWordTemplate()
 
@@ -20,7 +25,6 @@ createWordTemplate()
 // for now let it start up when the page loads
 
 // user interface object would be nice.
-// visual changes for guessed letters, number of lives
 
 // Display for the chosen word
 //      fill it with " _ " for # of letters in the word
@@ -38,9 +42,19 @@ function createWordTemplate() {
     }
 }
 
-function lifeHit() {
-    lives--
+
+function letterVerify() {
+    for (int ii = 0; ii < randomWord.length(); ii++) {
+        if (randomWord.charAt(ii) == guess) {
+            $("h3").charAt(ii * 2, guess)
+            correct = true;
+        }
+    }
+    if (!correct) {
+        lives--
+    }
 }
+
 function lifeUpdate() {
     $("h2").text(lives + " lives remaining")
 }
