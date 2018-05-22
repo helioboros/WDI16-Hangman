@@ -4,12 +4,7 @@ let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
 let lives = 6
 let completionProgress = randomWord.length
 let answerArray = []
-let guessed
-
-function guess(letter){
-    guessed = letter
-    console.log(guessed)
-}
+let guess
 
 lifeUpdate()
 createWordTemplate()
@@ -31,20 +26,24 @@ function createWordTemplate() {
 // is more than 0?
 // a function that it calls when progress reaches 0..
 
-function letterVerify() {
-    // let correct = false
+
+// logs clicked letter
+function choice(letter){
+    guess = letter
+    let correct = false
     randomWord.split("")
     for (let i = 0; i < randomWord.length; i++) {
-        if (randomWord[i] === guessed) {
-            answerArray[i] = guessed
+        if (randomWord[i] === guess) {
+            answerArray[i] = guess
             $("h3").text(answerArray.join(" "))
             completionProgress--
-            // correct = true
+            correct = true
         }
     }
-    // if (correct == false) {
-    //     lives--
-    // }
+    if (correct === false) {
+        lives--
+        lifeUpdate()
+    }
 }
 
 // reset function
@@ -59,16 +58,8 @@ function reset() {
     $(".button1").show()
 }
 
-//need a way to assign each button's id to var guess
-
-const interactable = {
-    //put the things that happen when users click buttons here. wait no
-    //those go below
-}
-
 $(() => {
-    //BUTTONS.
-    $(".button1").click(guess)
+    //BUTTONS. the click event that handles letters is in the HTML for cleanliness
     $(".button1").click(function () {
         $(this).fadeOut("slow");
     })
