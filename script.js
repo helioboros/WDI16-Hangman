@@ -1,8 +1,6 @@
-// const subjectAnimals = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"]
-// const subjectPlants = ["hydrangea", "hyacinth", "rose"]
 const randomArrays = {
     subjectAnimals: ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"],
-    subjectPlants: ["a", "b", "c"],
+    subjectPlants: ["orchid", "hydrangea", "hyacinth", "rose", "lily", "lotus"],
 }
 let arrayNames = Object.keys(randomArrays)
 let chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
@@ -20,14 +18,7 @@ createWordTemplate()
 subjectDisplayUpdate()
 
 
-function subjectDisplayUpdate() {
-    if (randomArrays.chosenArrayName == randomArrays.subjectAnimals) {
-        subjectName = "Animals"
-    } else if (randomArrays.chosenArrayName == randomArrays.subjectPlants) {
-        subjectName = "Plants"
-    } else {subjectName = "There's a problem here."}
-    $("h1").text("Current topic: " + subjectName)
-}
+
 
 // Refreshes number of lives for when you lose one or reset the game
 function lifeUpdate() {
@@ -41,6 +32,15 @@ function createWordTemplate() {
     }
     $("h3").text(answerArray.join(" "))
 }
+// Tells user what the word topic is
+function subjectDisplayUpdate() {
+    if (chosenArrayName == arrayNames[0]) {
+        subjectName = "Animals"
+    } else if (chosenArrayName == arrayNames[1]) {
+        subjectName = "Plants"
+    } else { subjectName = "There's a problem here." }
+    $("h1").text("Current topic: " + subjectName)
+}
 
 // have some kind of function to make this only playable when completion prog
 // is more than 0?
@@ -48,7 +48,7 @@ function createWordTemplate() {
 
 
 // logs clicked letter
-function choice(letter){
+function choice(letter) {
     guess = letter
     let correct = false
     randomWord.split("")
@@ -79,15 +79,9 @@ function reset() {
 }
 // Resets everything and randomizes subject and word
 function subject() {
-    answerArray = []
-    guess = ""
-    lives = 6
-    lifeUpdate()
     chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
-    randomWord = (randomArrays[chosenArrayName][(Math.floor(Math.random() * randomArrays[chosenArrayName].length))])
+    reset()
     subjectDisplayUpdate()
-    createWordTemplate()
-    $(".button1").show()
 }
 
 $(() => {
