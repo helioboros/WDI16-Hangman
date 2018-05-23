@@ -1,22 +1,29 @@
-const randomArray = [subjectAnimals, subjectPlants]
-const subjectAnimals = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"]
-const subjectPlants = ["hydrangea", "hyacinth", "rose"]
-let chosenArray = [(Math.floor(Math.random() * randomArray.length))]
-let randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
+// const subjectAnimals = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"]
+// const subjectPlants = ["hydrangea", "hyacinth", "rose"]
+const randomArrays = {
+    subjectAnimals: ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"],
+    subjectPlants: ["a", "b", "c"],
+}
+let arrayNames = Object.keys(randomArrays)
+let chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
+let randomWord = (randomArrays[chosenArrayName][(Math.floor(Math.random() * randomArrays[chosenArrayName].length))])
 let lives = 6
 let completionProgress = randomWord.length
 let answerArray = []
 let guess
 let subjectName
 
+
+subject()
 lifeUpdate()
 createWordTemplate()
 subjectDisplayUpdate()
 
+
 function subjectDisplayUpdate() {
-    if (chosenArray == subjectAnimals) {
+    if (randomArrays.chosenArrayName == randomArrays.subjectAnimals) {
         subjectName = "Animals"
-    } else if (chosenArray == subjectPlants) {
+    } else if (randomArrays.chosenArrayName == randomArrays.subjectPlants) {
         subjectName = "Plants"
     } else {subjectName = "There's a problem here."}
     $("h1").text("Current topic: " + subjectName)
@@ -65,9 +72,20 @@ function reset() {
     guess = ""
     lives = 6
     lifeUpdate()
-    randomWord = (chosenArray[(Math.floor(Math.random() * chosenArray.length))])
+    randomWord = (randomArrays[chosenArrayName][(Math.floor(Math.random() * randomArrays[chosenArrayName].length))])
     completionProgress = randomWord.length
-    $("h3").empty()
+    createWordTemplate()
+    $(".button1").show()
+}
+// Resets everything and randomizes subject and word
+function subject() {
+    answerArray = []
+    guess = ""
+    lives = 6
+    lifeUpdate()
+    chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
+    randomWord = (randomArrays[chosenArrayName][(Math.floor(Math.random() * randomArrays[chosenArrayName].length))])
+    subjectDisplayUpdate()
     createWordTemplate()
     $(".button1").show()
 }
@@ -77,5 +95,6 @@ $(() => {
     $(".button1").click(function () {
         $(this).fadeOut("slow");
     })
+    $("#random").click(subject)
     $("#reset").click(reset)
 })
