@@ -24,11 +24,28 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-h2 {
-    letter-spacing: 0px;
-    line-height: 0%;
+.gallowscontainer {
     white-space: pre;
-    font-family: sans-serif;
+    font-family: sans-serif, Arial, Helvetica;
+    font-weight: 900;
+    text-align: left;
+    display: flex;
+    align-items: space-around;
+    justify-content: space-around;
+}
+.gallows {
+    display: inline-block;
+    white-space: pre;
+    margin: 0 auto;
+    letter-spacing: 0px;
+    line-height: 1px;
+}
+h3 {
+    font-size: 4vmin;
+    display: flex;
+    align-items: space-around;
+    justify-content: space-around;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .button {
     display: inline;

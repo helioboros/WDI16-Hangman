@@ -10,20 +10,21 @@ let completionProgress = randomWord.length
 let answerArray = []
 let guess
 let subjectName
-let points = 0
-let lost = 0
+let wins = 0
+let losses = 0
 
-// Points and Lost could display as a win/loss tally.
+// Points and losses could display as a win/loss tally.
 
 subject()
 lifeUpdate()
 createWordTemplate()
 subjectDisplayUpdate()
+scoreboard()
 
 // Refreshes number of lives; for when you lose one or reset the game
 function lifeUpdate() {
     if (lives == 6) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -34,7 +35,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 5) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -45,7 +46,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 4) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -56,7 +57,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 3) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -67,7 +68,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 2) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -78,7 +79,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 1) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -89,7 +90,7 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     } else if (lives == 0) {
-        $("h2").html(`
+        $(".gallows").html(`
 <p>___________</p>
 <p>|/               |</p>
 <p>|                |</p>
@@ -100,6 +101,11 @@ function lifeUpdate() {
 <p>|__________</p>
     `)
     }
+}
+
+function scoreboard() {
+    $(".wins").text("Wins: " + wins)
+    $(".losses").text("Losses: " + losses)
 }
 
 // To update the display.
@@ -140,13 +146,15 @@ function choice(letter) {
     // Parameters to end the game, depending on whether the player's guess was correct or not.
     if (completionProgress == 0) {
         $("h3").text("Congratulations! The word was " + randomWord + ". Try again?")
-        points++
+        wins++
+        scoreboard()
         $(".letters").hide()
         return
     }
     if (lives == 0) {
         $("h3").text("Game over. The word was " + randomWord + ". Try again?")
-        lost++
+        losses++
+        scoreboard()
         $(".letters").hide()
         return
     }
@@ -157,8 +165,6 @@ function reset() {
     answerArray = []
     guess = ""
     lives = 6
-    points = 0
-    lost = 0
     lifeUpdate()
     randomWord = (randomArrays[chosenArrayName][(Math.floor(Math.random() * randomArrays[chosenArrayName].length))])
     completionProgress = randomWord.length
