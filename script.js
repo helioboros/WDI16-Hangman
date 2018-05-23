@@ -115,6 +115,10 @@ function createWordTemplate() {
         answerArray[i] = "_"
     }
     $("h3").text(answerArray.join(" "))
+// Hides replay button so nobody can cheat
+    if (completionProgress !== 0 && lives !== 0) {
+        $("#again").hide()
+    }
 }
 
 // Tells user what the word topic is.
@@ -149,6 +153,7 @@ function choice(letter) {
         $("h3").text("Congratulations! The word was " + randomWord + ". Try again?")
         wins++
         scoreboard()
+        $("#again").show()
         $(".letters").fadeOut()
         return
     }
@@ -156,13 +161,15 @@ function choice(letter) {
         $("h3").text("Game over. The word was " + randomWord + ". Try again?")
         losses++
         scoreboard()
+        $("#again").show()
         $(".letters").fadeOut()
         return
     }
 }
 
-// Resets everything and chooses a random word from the chosen array
-function reset() {
+
+// Allows you to play again without losing your points.
+function playAgain() {
     answerArray = []
     guess = ""
     lives = 6
@@ -173,11 +180,18 @@ function reset() {
     $(".button1").show()
     $(".letters").show()
 }
+// Resets everything, including points
+function reset() {
+    playAgain()
+    wins = 0
+    losses = 0
+    scoreboard()
+}
 
 // Resets everything and randomizes subject and word
 function subject() {
     chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
-    reset()
+    playAgain()
     subjectDisplayUpdate()
 }
 
@@ -187,6 +201,7 @@ $(() => {
     $(".button1").click(function () {
         $(this).fadeOut("slow");
     })
+    $("#again").click(playAgain)
     $("#random").click(subject)
     $("#reset").click(reset)
 })
