@@ -23,6 +23,7 @@ scoreboard()
 
 // Refreshes number of lives; for when you lose one or reset the game
 function lifeUpdate() {
+    $(".lives").text("Lives: " + lives)
     if (lives == 6) {
         $(".gallows").html(`
 <p>___________</p>
@@ -123,7 +124,7 @@ function subjectDisplayUpdate() {
     } else if (chosenArrayName == arrayNames[1]) {
         subjectName = "Plants"
     } else { subjectName = "There's a problem here." }
-    $("h1").text("Current topic: " + subjectName)
+    $("h1").text("Current subject: " + subjectName)
 }
 
 // Function for what to do for every clicked letter.
@@ -148,14 +149,14 @@ function choice(letter) {
         $("h3").text("Congratulations! The word was " + randomWord + ". Try again?")
         wins++
         scoreboard()
-        $(".letters").hide()
+        $(".letters").fadeOut()
         return
     }
     if (lives == 0) {
         $("h3").text("Game over. The word was " + randomWord + ". Try again?")
         losses++
         scoreboard()
-        $(".letters").hide()
+        $(".letters").fadeOut()
         return
     }
 }
