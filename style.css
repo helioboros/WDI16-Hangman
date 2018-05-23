@@ -24,6 +24,12 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
+h2 {
+    letter-spacing: 0px;
+    line-height: 0%;
+    white-space: pre;
+    font-family: sans-serif;
+}
 .button {
     display: inline;
     margin: 0 auto;

@@ -22,7 +22,84 @@ subjectDisplayUpdate()
 
 // Refreshes number of lives; for when you lose one or reset the game
 function lifeUpdate() {
-    $("h2").text(lives + " lives remaining")
+    if (lives == 6) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|</p>
+<p>|</p>
+<p>|</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 5) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|</p>
+<p>|</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 4) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|                |</p>
+<p>|</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 3) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|               /|</p>
+<p>|</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 2) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|               /|\\</p>
+<p>|</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 1) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|               /|\\</p>
+<p>|               /</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    } else if (lives == 0) {
+        $("h2").html(`
+<p>___________</p>
+<p>|/               |</p>
+<p>|                |</p>
+<p>|               O</p>
+<p>|               /|\\</p>
+<p>|               / \\</p>
+<p>|</p>
+<p>|__________</p>
+    `)
+    }
 }
 
 // To update the display.
@@ -63,13 +140,13 @@ function choice(letter) {
     // Parameters to end the game, depending on whether the player's guess was correct or not.
     if (completionProgress == 0) {
         $("h3").text("Congratulations! The word was " + randomWord + ". Try again?")
-        points ++
+        points++
         $(".letters").hide()
         return
     }
     if (lives == 0) {
         $("h3").text("Game over. The word was " + randomWord + ". Try again?")
-        lost ++
+        lost++
         $(".letters").hide()
         return
     }
