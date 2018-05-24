@@ -118,6 +118,7 @@ function createWordTemplate() {
 // Hides replay button so nobody can cheat
     if (completionProgress !== 0 && lives !== 0) {
         $("#again").hide()
+        $("#againsub").hide()
     }
 }
 
@@ -148,12 +149,13 @@ function choice(letter) {
         lives--
         lifeUpdate()
     }
+
     // Parameters to end the game, depending on whether the player's guess was correct or not.
     if (completionProgress == 0) {
         $("h3").text("Congratulations! The word was " + randomWord + ". Try again?")
         wins++
         scoreboard()
-        $("#again").show()
+        showReplayButtons()
         $(".letters").fadeOut()
         return
     }
@@ -161,12 +163,19 @@ function choice(letter) {
         $("h3").text("Game over. The word was " + randomWord + ". Try again?")
         losses++
         scoreboard()
-        $("#again").show()
+        showReplayButtons()
         $(".letters").fadeOut()
         return
     }
 }
 
+// To show the buttons that let you replay while retaining your score, and hiding the resets
+function showReplayButtons() {
+    $("#again").show()
+    $("#againsub").show()
+    $("#reset").hide()
+    $("#random").hide()
+}
 
 // Allows you to play again without losing your points.
 function playAgain() {
@@ -179,7 +188,17 @@ function playAgain() {
     createWordTemplate()
     $(".button1").show()
     $(".letters").show()
+    $("#reset").show()
+    $("#random").show()
 }
+
+// Play again with a random subject
+function againSubject() {
+    chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
+    playAgain()
+    subjectDisplayUpdate()
+}
+
 // Resets everything, including points
 function reset() {
     playAgain()
@@ -191,17 +210,18 @@ function reset() {
 // Resets everything and randomizes subject and word
 function subject() {
     chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
-    playAgain()
+    reset()
     subjectDisplayUpdate()
 }
 
 
 $(() => {
-    //BUTTONS. the click event that handles letters is in the HTML for cleanliness
+    //BUTTONS. the click event that handles letters is in the HTML.
     $(".button1").click(function () {
-        $(this).fadeOut("slow");
+        $(this).fadeOut("fast");
     })
     $("#again").click(playAgain)
+    $("#againsub").click(againSubject)
     $("#random").click(subject)
     $("#reset").click(reset)
 })
