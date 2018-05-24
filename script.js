@@ -1,6 +1,6 @@
 const randomArrays = {
     subjectAnimals: ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile", "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus", "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark", "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"],
-    subjectPlants: ["orchid", "hydrangea", "hyacinth", "rose", "lily", "lotus"],
+    subjectPlants: ["acorn", "almond", "apple", "apricot", "aspen", "bamboo", "baobab", "banyan", "bark", "basil", "beech", "birch", "brush", "buckeye", "butternut", "cabbage", "cactus", "cedar", "cherry", "chestnut", "clover", "coconut", "corn", "crabapple", "cypress", "date", "dogwood", "elderberry", "elm", "eucalyptus", "evergreen", "fern", "fig", "fir", "ginkgo", "grapefruit", "grass", "hawthorn", "hemlock", "hickory", "holly", "horsetail", "ivy", "juniper", "kelp", "kudzu", "kumquat", "larch", "lilac", "lily", "lotus", "magnolia", "mahogany", "mangrove", "maple", "moss", "nectarine", "oak", "olive", "orange", "palm", "palmetto", "peach", "pear", "pecan", "pine", "quince", "redwood", "sagebrush", "seaweed", "sequoia", "spruce", "succulent", "sycamore", "teak", "tulip", "walnut", "willow", "yew", "yucca"],
 }
 let arrayNames = Object.keys(randomArrays)
 let chosenArrayName = arrayNames[(Math.floor(Math.random() * arrayNames.length))]
